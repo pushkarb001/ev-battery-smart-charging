@@ -1,0 +1,7 @@
+scenario,strategy,ev_energy_ac_kwh,ev_charging_cost_eur,ev_cost_ct_per_kwh,household_bill_eur,grid_import_kwh,grid_export_kwh,peak_grid_import_kw,pv_self_consumption_pct,ev_pv_share_pct,charger_loss_kwh,battery_loss_kwh,final_soc_pct,target_reached
+home_office,uncontrolled,34.422,7.548,21.927,5.687,24.320,29.664,8.484,41.567,44.290,2.754,0.183,80.000,True
+home_office,tariff,34.422,8.261,24.000,6.401,39.566,44.910,11.384,11.536,0.000,2.754,0.183,80.000,True
+home_office,pv_tariff,34.332,2.747,8.000,0.886,5.144,10.578,1.425,79.163,100.000,2.747,0.095,80.000,True
+commuter,uncontrolled,34.422,14.245,41.382,12.384,38.941,44.284,12.425,12.768,1.818,2.754,0.183,80.000,True
+commuter,tariff,34.422,8.261,24.000,6.401,39.566,44.910,11.384,11.536,0.000,2.754,0.183,80.000,True
+commuter,pv_tariff,34.419,8.160,23.709,6.300,38.937,44.284,11.384,12.768,1.818,2.754,0.179,80.000,True

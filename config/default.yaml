@@ -1,0 +1,70 @@
+# Default configuration for the EV battery & smart charging study.
+# Every run is fully defined by this file: copy it, change values, and run
+#   python run.py --config config/my_case.yaml
+
+output_dir: results
+
+battery_identification:
+  # "synthetic" generates reference-cell test data (runs without downloads).
+  # "csv" loads real measurements from the files below
+  #   (columns: time_s, current_a, voltage_v; current > 0 = discharge).
+  data_source: synthetic
+  seed: 7
+  csv:
+    ocv_test: data/raw/ocv.csv
+    pulse_test: data/raw/pulse.csv
+    validation_test: data/raw/dynamic.csv
+    soc0_ocv: 1.00
+    soc0_pulse: 0.95
+    soc0_validation: 0.90
+
+pack:
+  n_series: 96          # ~350 V nominal
+  n_parallel: 58        # 96s58p of 3 Ah cells -> ~61 kWh
+
+vehicle:
+  soc_initial: 0.30
+  soc_target: 0.80
+  plug_in_h: 1.0        # hours after simulation start
+  departure_h: 23.0
+
+charger:
+  max_power_kw: 11.0    # 3-phase 16 A wallbox
+  efficiency: 0.92
+  grid_limit_kw: 25.0
+
+simulation:
+  start_hour: 8.0       # wall-clock hour at t = 0
+  duration_h: 24.0
+  time_step_min: 1.0
+  seed: 11
+
+pv:
+  peak_kwp: 10.0
+  sunrise_h: 6.5
+  sunset_h: 19.5
+  cloudiness: 0.25      # 0 = clear sky, 1 = heavily overcast
+
+household:
+  daily_kwh: 11.0
+
+tariff:
+  feed_in_eur_kwh: 0.08
+  bands:                # time-of-use prices in EUR/kWh
+    - {start: 0.0,  end: 6.0,  price: 0.24}
+    - {start: 6.0,  end: 17.0, price: 0.33}
+    - {start: 17.0, end: 21.0, price: 0.42}
+    - {start: 21.0, end: 24.0, price: 0.30}
+
+# Scenarios compared in the study (override the vehicle plug-in time)
+scenarios:
+  home_office:
+    label: "Home-office day (plugged in 09:00-07:00)"
+    plug_in_h: 1.0
+  commuter:
+    label: "Commuter (plugged in 17:30-07:00)"
+    plug_in_h: 9.5
+
+# Parameter sweep for the sensitivity study
+sweep:
+  pv_peak_kwp: [0.0, 2.5, 5.0, 7.5, 10.0, 12.5, 15.0]

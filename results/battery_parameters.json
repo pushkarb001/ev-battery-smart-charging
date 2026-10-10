@@ -1,0 +1,11 @@
+{
+  "capacity_ah": 2.9824,
+  "r0_mohm": 32.537,
+  "r1_mohm": 13.745,
+  "c1_f": 5453.6,
+  "tau1_s": 74.96,
+  "fit_rmse_mv": 3.65,
+  "validation_rmse_mv": 9.86,
+  "validation_max_err_mv": 46.44,
+  "data_source": "synthetic"
+}
